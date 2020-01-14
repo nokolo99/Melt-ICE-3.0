@@ -24,7 +24,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if(ParseUser.getCurrentUser() != null){
+        if(ParseUser.getCurrentUser() == null){
 
             final Intent intent = new Intent(LoginActivity.this, LandingActivity.class);
             startActivity(intent);

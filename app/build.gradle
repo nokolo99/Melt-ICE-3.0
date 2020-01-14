@@ -9,6 +9,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -39,4 +40,10 @@ dependencies {
 
     implementation "com.android.support:appcompat-v7:27.1.1"
     implementation "com.android.support:design:27.1.1"
+
+    implementation 'com.google.android.gms:play-services:8.4.0'
+    implementation 'com.android.support:multidex:1.0.3'
+
 }
+
+apply plugin: 'com.android.application'
