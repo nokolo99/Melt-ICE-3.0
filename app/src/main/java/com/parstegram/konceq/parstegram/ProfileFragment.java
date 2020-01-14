@@ -54,14 +54,14 @@ public class ProfileFragment extends Fragment {
         imageView = view.findViewById(R.id.profilePic);
         postButton = view.findViewById(R.id.postBtn);
 
-        final ParseUser user = ParseUser.getCurrentUser();
-        System.out.println(user);
-        final ParseFile pic = user.getParseFile("profilePic");
-        if(pic != null) {
-            Glide.with(this).load(pic.getUrl())
-                    .apply(bitmapTransform(new CircleCrop()))
-                    .into(imageView);
-        }
+//        final ParseUser user = ParseUser.getCurrentUser();
+//        System.out.println(user);
+//        final ParseFile pic = user.getParseFile("profilePic");
+//        if(pic != null) {
+//            Glide.with(this).load(pic.getUrl())
+//                    .apply(bitmapTransform(new CircleCrop()))
+//                    .into(imageView);
+//        }
 
         profileButton.setOnClickListener(new View.OnClickListener() {
             @Override

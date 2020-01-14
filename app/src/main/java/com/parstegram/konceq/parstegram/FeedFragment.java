@@ -69,22 +69,22 @@ public class FeedFragment extends Fragment {
     }
 
     public void populateTimeline(){
-        ParseQuery<Post> query = ParseQuery.getQuery(Post.class).include("user");
-        // Execute the find asynchronously
-        query.setLimit(20);
-        //query.whereEqualTo("user", ParseUser.getCurrentUser());
-        query.orderByDescending("createdAt");
-        query.findInBackground(new FindCallback<Post>() {
-            public void done(List<Post> itemList, ParseException e) {
-                if (e == null) {
-                    // Access the array of results here
-                    posts.addAll(itemList);
-                    postAdapter.notifyDataSetChanged();
-                } else {
-                    Log.d("item", "Error: " + e.getMessage());
-                }
-            }
-        });
+//        ParseQuery<Post> query = ParseQuery.getQuery(Post.class).include("user");
+//        // Execute the find asynchronously
+//        query.setLimit(20);
+//        //query.whereEqualTo("user", ParseUser.getCurrentUser());
+//        query.orderByDescending("createdAt");
+//        query.findInBackground(new FindCallback<Post>() {
+//            public void done(List<Post> itemList, ParseException e) {
+//                if (e == null) {
+//                    // Access the array of results here
+//                    posts.addAll(itemList);
+//                    postAdapter.notifyDataSetChanged();
+//                } else {
+//                    Log.d("item", "Error: " + e.getMessage());
+//                }
+//            }
+//        });
     }
 
 }
