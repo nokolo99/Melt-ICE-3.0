@@ -35,9 +35,6 @@ public class ProfileFragment extends Fragment {
     private static final String AUTHORITY = "com.parstegram.konceq.parstegram";
 
     private Button logoutButton;
-    private Button profileButton;
-    private ImageView imageView;
-    private Button postButton;
     Bitmap bitmap;
     private File file;
 
@@ -50,32 +47,6 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         logoutButton = view.findViewById(R.id.logoutBtn);
-        profileButton = view.findViewById(R.id.profileBtn);
-        imageView = view.findViewById(R.id.profilePic);
-        postButton = view.findViewById(R.id.postBtn);
-
-        final ParseUser user = ParseUser.getCurrentUser();
-        System.out.println(user);
-        final ParseFile pic = user.getParseFile("profilePic");
-        if(pic != null) {
-            Glide.with(this).load(pic.getUrl())
-                    .apply(bitmapTransform(new CircleCrop()))
-                    .into(imageView);
-        }
-
-        profileButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                File directory = getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-                try {
-                    file = File.createTempFile("photo", ".jpg", directory);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                dispatchTakePictureIntent();
-            }
-        });
-
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -85,29 +56,6 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        postButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final ParseUser user = ParseUser.getCurrentUser();
-                if(file == null){
-                    Toast.makeText(ProfileFragment.super.getContext(), "Must include an image in order to post", Toast.LENGTH_LONG).show();
-                    return;
-                }
-
-                final ParseFile parseFile = new ParseFile(file);
-                parseFile.saveInBackground(new SaveCallback() {
-                    @Override
-                    public void done(ParseException e) {
-                        user.put("profilePic", parseFile);
-                        user.saveInBackground();
-                        Glide.with(ProfileFragment.this.getContext()).load(parseFile.getUrl())
-                                .apply(bitmapTransform(new CircleCrop()))
-                                .into(imageView);
-                        Toast.makeText(ProfileFragment.super.getContext(), "Profile pic updated", Toast.LENGTH_LONG).show();
-                    }
-                });
-            }
-        });
     }
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
@@ -121,13 +69,7 @@ public class ProfileFragment extends Fragment {
         }
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
-            imageView.setImageBitmap(this.bitmap);
-        }
-    }
+
 
 
 

@@ -24,21 +24,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if(ParseUser.getCurrentUser() == null){
-
-            final Intent intent = new Intent(LoginActivity.this, LandingActivity.class);
-            startActivity(intent);
-            finish();
-
-            /*
-            setContentView(R.layout.activity_landing);
-            final Fragment fragmentFeed = new FeedFragment();
-            final FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.framelayout, fragmentFeed).commit();
-            */
-            return;
-        }
 
         setContentView(R.layout.activity_login);
 
@@ -67,21 +52,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void login(String username, String password){
-        ParseUser.logInInBackground(username, password, new LogInCallback() {
-            @Override
-            public void done(ParseUser user, ParseException e) {
-                if(e == null){
-                    Log.d("LoginActivity", "Login successful");
-                    final Intent intent = new Intent(LoginActivity.this, LandingActivity.class);
-                    startActivity(intent);
-                    finish();
-                }
-                else{
-                    Log.e("LoginActivity", "Login failure");
-                    Toast.makeText(LoginActivity.super.getBaseContext(), "Username or password incorrect", Toast.LENGTH_LONG).show();
-                    e.printStackTrace();
-                }
-            }
-        });
+        final Intent intent = new Intent(LoginActivity.this, LandingActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
+
