@@ -10,4 +10,7 @@
     <string name="english">English</string>
     <string name="espanol">Español</string>
     <string name="language">Language</string>
+    <string name="login_background_screen">login background screen</string>
+
+    <color name="icy">#ACDFF7</color>
 </resources>
